@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+section {
+    margin: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#carrito {
+    margin-top: 2rem;
+}
+
+#listaCarrito {
+    list-style: none;
+    padding: 0;
+}
+
+/* Agregamos estilos a la section de productos  */
+
+.productos-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.producto{
+    text-align: center;
+}
+.producto img {
+    max-width: 100%;
+    height: 220px;
+}
