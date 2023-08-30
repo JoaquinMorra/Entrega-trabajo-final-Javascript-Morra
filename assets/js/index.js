@@ -1,8 +1,11 @@
+// import localStorage from 'local-storage';
+localStorage.setItem('clave', 'valor');
+const valor = localStorage.getItem('clave');
 const listaProductos = document.getElementById('productos');
 const listaCarrito = document.getElementById('listaCarrito');
 const totalCarrito = document.getElementById('totalCarrito');
 const btnVaciarCarrito = document.getElementById('vaciarCarrito');
-
+const btnRealizarCompra = document.getElementById('realizarCompra');
 let carrito = [];
 let productosData;
 
@@ -52,6 +55,21 @@ function actualizarCarrito() {
 
     totalCarrito.textContent = `Total: $${total}`;
 }
+// Función para guardar el carrito en el localStorage
+function guardarCarritoEnLocalStorage() {
+    localStorage.setItem('carrito',JSON.stringify(carrito));
+}
+
+// Función para cargar el carrito desde el localStorage
+function cargarCarritoDesdeLocalStorage() {
+    const carritoGuardado = JSON.parse(localStorage.getItem('carrito'));
+    if (carritoGuardado) {
+        carrito = carritoGuardado;
+        actualizarCarrito();
+    }
+}
+
+
 
 // Evento click en los botones "Agregar al Carrito"
 listaProductos.addEventListener('click', event => {
@@ -68,6 +86,25 @@ listaProductos.addEventListener('click', event => {
 btnVaciarCarrito.addEventListener('click', () => {
     carrito = [];
     actualizarCarrito();
+    localStorage.remove('carrito'); 
 });
+
+// Evento click en el botón "Realizar Compra"
+btnRealizarCompra.addEventListener('click', () => {
+    if (carrito.length > 0) {
+        // Aquí puedes agregar la lógica de cierre de compra
+        // Por ejemplo, simular una operación de pago, guardar detalles de la compra, etc.
+        alert('¡Compra realizada con éxito!');
+        carrito = [];
+        actualizarCarrito();
+        localStorage.remove('carrito'); // Remover el carrito del localStorage
+    } else {
+        alert('El carrito está vacío. Agrega productos antes de realizar la compra.');
+    }
+});
+
+
+// Cargar el carrito desde el localStorage al iniciar
+cargarCarritoDesdeLocalStorage();
 
 cargarProductos();
